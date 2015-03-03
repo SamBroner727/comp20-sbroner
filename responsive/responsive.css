@@ -1,0 +1,107 @@
+
+@media (min-width: 1201px) {
+        div.software {
+
+                background:url(./software.png) 0px 0px;
+                width: 120px;
+                height: 228px;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+        }
+
+}
+
+@media (min-width: 1101px) and (max-width: 1200px){
+        div.software {
+
+                background:url(./software.png) -126px 0px;
+                width: 120px;
+                height: 228px;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+        }
+}
+@media (min-width: 1001px) and (max-width: 1100px){
+        div.software {
+
+                background:url(./software.png) -252px 0px;
+                width: 120px;
+                height: 228px;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+        }
+
+}
+
+@media (min-width: 901px) and (max-width: 1000px){
+        div.software {
+
+                background:url(./software.png) -379px 0px;
+                width: 120px;
+                height: 228px;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+        }
+}
+@media (min-width: 801px) and (max-width: 900px){
+        div.software {
+
+                background:url(./software.png) -505px 0px;
+                width: 120px;
+                height: 228px;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+        }
+}
+@media (min-width: 701px) and (max-width: 800px){
+        div.software {
+
+                background:url(./software.png) 0px -238px;
+                width: 120px;
+                height: 228px;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+        }
+}
+@media (min-width: 601px) and (max-width: 700px){
+        div.software {
+
+                background:url(./software.png) -126px -238px;
+                width: 120px;
+                height: 228px;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+        }
+}
+@media (min-width: 501px) and (max-width: 600px){
+        div.software {
+
+                background:url(./software.png) -252px -238px;
+                width: 120px;
+                height: 228px;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+        }
+
+}
+@media (min-width: 401px) and (max-width: 500px){
+        div.software {
+
+                background:url(./software.png) -379px -238px;
+                width: 120px;
+                height: 228px;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+        }
+}
+
+@media (max-width: 400px){
+        div.software {
+
+                background:url(./software.png) -505px -238px;
+                width: 120px;
+                height: 228px;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+        }
+}
