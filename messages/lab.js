@@ -22,7 +22,6 @@ function parse() {
                                                 + data[id].username + '</span> </p>';
                         }
                         div.innerHTML = div.innerHTML + '</div>';
-//                                 div.innerHTML= <p class="message"> data[id].content </p> + div.innerHTML;
 
                 }
         }

@@ -3,12 +3,12 @@ span.content {
 
         display: block;
         width:auto;
-
+        
 }
 span.usrname {
 
         display: inline-block;
-        width:auto;
+        width:;
 }
 
 p.message {
