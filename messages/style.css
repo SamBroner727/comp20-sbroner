@@ -1,8 +1,7 @@
 
 a.content {
 
-/*        display: inline-block;
-*/        font-size: 13pt;
+        font-size: 13pt;
         width:auto;
 
 }
@@ -10,7 +9,6 @@ a.usrname {
 
         display: block;
         font-size: 10pt;
-
         width:auto;
 }
 

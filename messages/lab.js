@@ -14,8 +14,6 @@ function parse() {
                         data = JSON.parse(xhr.responseText);
 
                         var div = document.getElementById('messages');
-                        // div.innerHTML = '<div class="check">';
-                        // console.log(div.innerHTML);
 
                         for(id in data) {
                                 div.innerHTML= div.innerHTML + '<p class="message"> <a class="content">' +
@@ -23,8 +21,6 @@ function parse() {
                                                  data[id].username.trim() + '</a> </p>';
                         }
 
-                        console.log(div.innerHTML);
-                        // div.innerHTML = div.innerHTML.append('</div>') ;
 
                 }
         }
