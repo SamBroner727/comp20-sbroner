@@ -1,14 +1,15 @@
 
-span.content {
+a.content {
+
+        font-size: 13pt;
+        width:auto;
+
+}
+a.usrname {
 
         display: block;
+        font-size: 10pt;
         width:auto;
-        
-}
-span.usrname {
-
-        display: inline-block;
-        width:;
 }
 
 p.message {
