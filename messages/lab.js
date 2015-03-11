@@ -2,7 +2,7 @@ function parse() {
 
         xhr = new XMLHttpRequest();
         xhr.overrideMimeType("application/json");
-        xhr.open("get", "http://messagehub.herokuapp.com/messages.json", true);
+        xhr.open("get", "data.json", true);
 
         xhr.onreadystatechange = loadMessages;
 
@@ -10,6 +10,7 @@ function parse() {
         
         function loadMessages(){
                 if (xhr.readyState == 4 && xhr.status == 200) {
+                        console.log("In my callback function " + xhr);
                         data = JSON.parse(xhr.responseText);
 
                         var div = document.getElementById('messages');
