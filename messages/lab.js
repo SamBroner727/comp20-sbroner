@@ -2,7 +2,7 @@ function parse() {
 
         xhr = new XMLHttpRequest();
         xhr.overrideMimeType("application/json");
-        xhr.open("get", "http://messagehub.herokuapp.com/messages.json", true);
+        xhr.open("get", "data.json", true);
 
         xhr.onreadystatechange = loadMessages;
 
