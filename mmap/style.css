@@ -1,4 +1,12 @@
 
+div.message {
+
+}
+
+p.username {
+        font-weight: 500;
+}
+
 html { 
     height: 100% 
 }

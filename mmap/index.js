@@ -26,18 +26,14 @@ var places;
 
 function init() {
     map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-    console.log("Call before getMyLocation()");
     getMyLocation();
     checkresponse();
-    console.log("Call after getMyLocation()");
 }
 
 function checkresponse() {
     http.onreadystatechange = function() { //Call a function when the state changes
 
         if (http.readyState == 4 && http.status == 200) {
-            console.log(http.responseText);
-
             makeMarkers();
             renderMe();
         }
@@ -130,11 +126,8 @@ function calculateDistance(latitude, longitude) {
     var myLatRad = toRad(myLat);
     var myLngRad = toRad(myLng);
 
-    console.log("Latitude in Degrees: " + latitude);
 
     latitude = toRad(latitude);
-    console.log("Latitude in Radians: " + latitude);
-
 
     longitude = toRad(longitude);
 
@@ -146,8 +139,6 @@ function calculateDistance(latitude, longitude) {
         Math.sin(dLng / 2) * Math.sin(dLng / 2);
 
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-
-    console.log(R*c);
 
     return R * c / 1609.34;
 
