@@ -129,7 +129,6 @@ function makeMarkers() {
             infowindow.setContent(this.title + "   distance from orig: " + 
                 calculateDistance(this.position.lat(), this.position.lng()));
 
-                );
             infowindow.open(map, this);
         });
     }
