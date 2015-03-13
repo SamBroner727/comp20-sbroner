@@ -118,7 +118,8 @@ function makeMarkers() {
 
         latlng = new google.maps.LatLng(user.lat, user.lng);
         marker = new google.maps.Marker({
-            position: latlng;
+            position: latlng,
+            map: map,
             title: user.login
         });
         marker.setMap(map);
