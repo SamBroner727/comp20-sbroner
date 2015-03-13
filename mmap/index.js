@@ -2,7 +2,7 @@
 var http = new XMLHttpRequest();
 var url = "https://secret-about-box.herokuapp.com/sendLocation";
 http.open("POST", url, true);
-http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+// http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
 
 
@@ -108,8 +108,7 @@ function renderMap() {
 
 function makeMarkers() {
     
-    console.log(http.responseText);
-
+    console.log("IN MAKE MARKERS");
     var data = JSON.parse(http.responseText);
 
     var marker;
