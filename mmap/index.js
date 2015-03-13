@@ -126,8 +126,8 @@ function makeMarkers() {
         marker.setMap(map);
         google.maps.event.addListener(marker, 'click', function() {
             infowindow.close();
-            infowindow.setContent(this.title + "   distance from orig: " + 
-                calculateDistance(this.position.lat(), this.position.lng()));
+            infowindow.setContent('<div id="message"> <p id="username"> ' + this.title + '</p> <p id="distance">'+ 
+                calculateDistance(this.position.lat(), this.position.lng()) + '</p> </div>');
 
             infowindow.open(map, this);
         });
