@@ -38,10 +38,7 @@ function checkresponse() {
         if (http.readyState == 4 && http.status == 200) {
             console.log(http.responseText);
 
-            console.log("About to call makeMarkers()");
             makeMarkers();
-            console.log("called make");
-
         }
     }
 }
@@ -112,7 +109,6 @@ function renderMap() {
 
 function makeMarkers() {
 
-    console.log("IN MAKE MARKERS");
     var data = JSON.parse(http.responseText);
 
     var marker;
@@ -128,13 +124,14 @@ function makeMarkers() {
         });
 
         marker.setMap(map);
-
+        
         google.maps.event.addListener(marker, 'click', function() {
             infowindow.close();
-            infowindow.setContent(data[user].login);
+            infowindow.setContent(this.login);
             infowindow.open(map, this);
         });
     }
+
 
 }
 
