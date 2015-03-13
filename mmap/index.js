@@ -39,6 +39,7 @@ function checkresponse() {
             console.log(http.responseText);
 
             makeMarkers();
+            renderMe();
         }
     }
 }
@@ -64,7 +65,7 @@ function getMyLocation() {
     console.log("Leaving getMyLocation()");
 }
 
-function renderMap() {
+function renderMe() {
     me = new google.maps.LatLng(myLat, myLng);
 
     // Update map and go there...
@@ -73,14 +74,18 @@ function renderMap() {
     // Create a marker
     marker = new google.maps.Marker({
         position: me,
-        title: "Here I Am!"
+        title: "PatFitzgerald"
     });
     marker.setMap(map);
 
 
     // Open info window on click of marker
     google.maps.event.addListener(marker, 'click', function() {
-        infowindow.setContent(marker.title);
+        infowindow.setContent(
+            '<div> <p id="username">Pat Fitzgerald </p>
+                <img src="pat_fitzgerald.jpg" alt="Pat Fitzgerald, winningest coach in Northwestern Football History">
+            </div>'
+            );
         infowindow.open(map, marker);
     });
 }
