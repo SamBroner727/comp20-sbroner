@@ -120,6 +120,8 @@ function makeMarkers() {
 
     for (var user in data) {
 
+        console.log(user);
+
         latlng = new google.maps.LatLng(user.lat, user.lng);
         marker = new google.maps.Marker({
             position: latlng,
@@ -128,7 +130,6 @@ function makeMarkers() {
         });
 
         marker.setMap(map);
-        console.log("marked");
     }
 
 }
