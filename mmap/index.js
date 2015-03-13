@@ -2,7 +2,7 @@
 var http = new XMLHttpRequest();
 var url = "https://secret-about-box.herokuapp.com/sendLocation";
 http.open("POST", url, true);
-// http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
 
 
@@ -37,6 +37,11 @@ function checkresponse() {
 
         if (http.readyState == 4 && http.status == 200) {
             console.log(http.responseText);
+
+            console.log("About to call makeMarkers()");
+            makeMarkers();
+            console.log("called make");
+
         }
     }
 }
@@ -74,15 +79,14 @@ function renderMap() {
         title: "Here I Am!"
     });
     marker.setMap(map);
-    
-    makeMarkers();
+
+
 
     // Open info window on click of marker
     google.maps.event.addListener(marker, 'click', function() {
         infowindow.setContent(marker.title);
         infowindow.open(map, marker);
     });
-
 
     // Calling Google Places API
     // var request = {
@@ -107,14 +111,14 @@ function renderMap() {
 // }
 
 function makeMarkers() {
-    
+
     console.log("IN MAKE MARKERS");
     var data = JSON.parse(http.responseText);
 
     var marker;
     var latlng
 
-    for(var user in data) {
+    for (var user in data) {
 
         latlng = new google.maps.LatLng(user.lat, user.lng);
         marker = new google.maps.Marker({
@@ -125,7 +129,7 @@ function makeMarkers() {
 
         marker.setMap(map);
         console.log("marked");
-    }   
+    }
 
 }
 
@@ -142,4 +146,3 @@ function createMarker(place) {
         infowindow.open(map, this);
     });
 }
-
