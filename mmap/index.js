@@ -29,7 +29,6 @@ function init() {
     console.log("Call before getMyLocation()");
     getMyLocation();
     checkresponse();
-    makeMarkers();
     console.log("Call after getMyLocation()");
 }
 
@@ -38,6 +37,8 @@ function checkresponse() {
 
         if (http.readyState == 4 && http.status == 200) {
             console.log(http.responseText);
+            makeMarkers();
+
         }
     }
 }
@@ -122,7 +123,7 @@ function makeMarkers() {
             map: map,
             title: user.login
         });
-        
+
         marker.setMap(map);
     }   
 
