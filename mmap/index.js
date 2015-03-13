@@ -128,6 +128,12 @@ function makeMarkers() {
         });
 
         marker.setMap(map);
+
+        google.maps.event.addListener(marker, 'click', function() {
+            infowindow.close();
+            infowindow.setContent(data[user].login);
+            infowindow.open(map, this);
+        });
     }
 
 }
