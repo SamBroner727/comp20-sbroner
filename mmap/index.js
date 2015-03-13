@@ -5,7 +5,7 @@
     http.open("POST", url, true);
     http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-    var myLat = 0;
+    var myLat =0;
     var myLng = 0;
     var params = "";
     var request = new XMLHttpRequest();
