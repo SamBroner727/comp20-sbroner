@@ -124,16 +124,51 @@ function makeMarkers() {
         });
 
         marker.setMap(map);
-        
         google.maps.event.addListener(marker, 'click', function() {
             infowindow.close();
-            infowindow.setContent(this.login);
+            infowindow.setContent(this.title + "   distance from orig: " + 
+                calculateDistance(this.position.lat(), this.position.lng()));
+
+                );
             infowindow.open(map, this);
         });
     }
 
+}
+
+function toRad(x) {
+   return x * Math.PI / 180;
+}
+
+function calculateDistance(latitude, longitude) {
+
+    var R = 6371000
+    var myLatRad = toRad(myLat);
+    var myLngRad = toRad(myLng);
+
+    console.log("Latitude in Degrees: " + latitude);
+
+    latitude = toRad(latitude);
+    console.log("Latitude in Radians: " + latitude);
+
+
+    longitude = toRad(longitude);
+
+    dLat = latitude - myLatRad;
+    dLng = longitude - myLngRad;
+
+    var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(myLatRad) * Math.cos(latitude) *
+        Math.sin(dLng / 2) * Math.sin(dLng / 2);
+
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+    console.log(R*c);
+
+    return R * c / 1609.34;
 
 }
+
 
 function createMarker(place) {
     var placeLoc = place.geometry.location;
