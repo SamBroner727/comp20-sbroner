@@ -56,7 +56,7 @@ function getMyLocation() {
             params = "login=PatFitzgerald&" + "lat=" + myLat + "&lng=" + myLng;
             http.send(params);
             console.log(params);
-            renderMap();
+            // renderMap();
         });
     } else {
         alert("Geolocation is not supported by your web browser.  What a shame!");
@@ -78,34 +78,13 @@ function renderMap() {
     marker.setMap(map);
 
 
-
     // Open info window on click of marker
     google.maps.event.addListener(marker, 'click', function() {
         infowindow.setContent(marker.title);
         infowindow.open(map, marker);
     });
-
-    // Calling Google Places API
-    // var request = {
-    //     location: me,
-    //     radius: '500',
-    //     types: ['food']
-    // };
-
-    // service = new google.maps.places.PlacesService(map);
-    // service.search(request, callback);
 }
 
-// Taken from http://code.google.com/apis/maps/documentation/javascript/places.html
-// function callback(results, status) {
-//     if (status == google.maps.places.PlacesServiceStatus.OK) {
-//         alert("Got places back!");
-//         places = results;
-//         for (var i = 0; i < results.length; i++) {
-//             createMarker(results[i]);
-//         }
-//     }
-// }
 
 function makeMarkers() {
 
@@ -126,13 +105,14 @@ function makeMarkers() {
         marker.setMap(map);
         google.maps.event.addListener(marker, 'click', function() {
             infowindow.close();
-            infowindow.setContent('<div id="message"> <p id="username"> ' + this.title + '</p> <p id="distance">'+ 
-                calculateDistance(this.position.lat(), this.position.lng()) + '</p> </div>');
+            infowindow.setContent('<div id="message"> <p id="username"> ' + 
+                this.title + '</p> <p id="distance">'+ 
+                calculateDistance(this.position.lat(), this.position.lng()) + 
+                '</p> </div>');
 
             infowindow.open(map, this);
         });
     }
-
 }
 
 function toRad(x) {
@@ -166,19 +146,4 @@ function calculateDistance(latitude, longitude) {
 
     return R * c / 1609.34;
 
-}
-
-
-function createMarker(place) {
-    var placeLoc = place.geometry.location;
-    var marker = new google.maps.Marker({
-        map: map,
-        position: place.geometry.location
-    });
-
-    google.maps.event.addListener(marker, 'click', function() {
-        infowindow.close();
-        infowindow.setContent(place.name);
-        infowindow.open(map, this);
-    });
 }
