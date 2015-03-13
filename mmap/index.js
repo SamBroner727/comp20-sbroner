@@ -37,8 +37,6 @@ function checkresponse() {
 
         if (http.readyState == 4 && http.status == 200) {
             console.log(http.responseText);
-            makeMarkers();
-
         }
     }
 }
@@ -76,6 +74,8 @@ function renderMap() {
         title: "Here I Am!"
     });
     marker.setMap(map);
+    
+    makeMarkers();
 
     // Open info window on click of marker
     google.maps.event.addListener(marker, 'click', function() {
@@ -125,6 +125,7 @@ function makeMarkers() {
         });
 
         marker.setMap(map);
+        console.log("marked");
     }   
 
 }
