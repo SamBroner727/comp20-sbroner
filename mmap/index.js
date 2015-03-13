@@ -82,9 +82,9 @@ function renderMe() {
     // Open info window on click of marker
     google.maps.event.addListener(marker, 'click', function() {
         infowindow.setContent(
-            '<div> <p id="username">Pat Fitzgerald </p>
-                <img src="pat_fitzgerald.jpg" alt="Pat Fitzgerald, winningest coach in Northwestern Football History">
-            </div>'
+            '<div> <p id="username">Pat Fitzgerald </p>' +
+                '<img src="pat_fitzgerald.jpg" alt="Pat Fitzgerald, winningest coach in Northwestern Football History"> '
+            + '</div>'
             );
         infowindow.open(map, marker);
     });
