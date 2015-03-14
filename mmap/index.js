@@ -41,7 +41,6 @@ function checkresponse() {
 }
 
 function getMyLocation() {
-    console.log("In getMyLocation()");
     if (navigator.geolocation) { // the navigator.geolocation object is supported on your browser
 
         // Updates location to browsers location.
@@ -52,19 +51,16 @@ function getMyLocation() {
             // my log in
             params = "login=PatFitzgerald&" + "lat=" + myLat + "&lng=" + myLng;
             http.send(params);
-            console.log(params);
             // renderMap();
         });
     } else {
         alert("Geolocation is not supported by your web browser.  What a shame!");
     }
-    console.log("Leaving getMyLocation()");
 }
 
 function renderMe() {
     me = new google.maps.LatLng(myLat, myLng);
 
-    // Update map and go there...
     map.panTo(me);
 
     // Create a marker
@@ -75,7 +71,6 @@ function renderMe() {
     marker.setMap(map);
 
 
-    // Open info window on click of marker
     google.maps.event.addListener(marker, 'click', function() {
         infowindow.setContent(
             '<div> <p id="username">Pat Fitzgerald </p>' +
@@ -109,17 +104,19 @@ function makeMarkers() {
             infowindow.setContent('<div id="message"> <p id="username"> ' + 
                 this.title + '</p> <p id="distance">'+ 
                 calculateDistance(this.position.lat(), this.position.lng()) + 
-                '</p> </div>');
+                'mi </p> </div>');
 
             infowindow.open(map, this);
         });
     }
 }
 
+//Function to convert to Radians
 function toRad(x) {
    return x * Math.PI / 180;
 }
 
+//Calculate distance from "me" using Haversine formula
 function calculateDistance(latitude, longitude) {
 
     var R = 6371000
