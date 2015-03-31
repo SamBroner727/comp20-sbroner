@@ -12,16 +12,18 @@
                         $(document).keypress(function(e) {
                             if(e.which == 13) {
                                 var input = $('input#msg').val();
-                                var entry = '<p>' + Date() + ' - ' + input + '</p>';
-                                localStorage[entry] = entry;
-                                $("div#log").prepend(entry);
-                                $('input#msg').val('');
+                                if(input != "") {
+                                        var entry = '<p>' + Date() + ' - ' + input + '</p>';
+                                        localStorage[entry] = entry;
+                                        $("div#log").prepend(entry);
+                                        $('input#msg').val('');
+                                }
                             }
                         });
                 });
                 function loadLocalStorage() {
                         for(key in localStorage) {
-                                $("div#log").prepend(localStorage[key]);
+                                $("div#log").prepend (localStorage[key]);
                         }
                 };
          </script>
