@@ -41,6 +41,7 @@ function checkresponse() {
 }
 
 function getMyLocation() {
+    // console.log("getMyLocation");
     if (navigator.geolocation) { // the navigator.geolocation object is supported on your browser
 
         // Updates location to browsers location.
@@ -50,6 +51,7 @@ function getMyLocation() {
 
             // my log in
             params = "login=PatFitzgerald&" + "lat=" + myLat + "&lng=" + myLng;
+            // console.log(params);
             http.send(params);
             // renderMap();
         });
