@@ -1,6 +1,6 @@
 //URL and XMLHttpRequest info
 var http = new XMLHttpRequest();
-var url = "https://ancient-mesa-5081.herokuapp.com/sendLocation";
+var url = "http://localhost:5000/sendLocation"; //"https://ancient-mesa-5081.herokuapp.com/sendLocation";
 http.open("POST", url, true);
 http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
