@@ -1,0 +1,64 @@
+.header {
+    position: relative;
+    top: 15px;
+    text-align: center;
+    height: auto;
+}
+
+.title {
+    font-size: 200%;
+    font-weight: 600;
+}
+.subtitle {
+    font-weight: 400;
+    font-size: 100%;
+    position: relative;
+    top:-20px;
+    border-bottom: 2px solid #cccccc;
+}
+
+.bullet {
+    font-size: 125%;
+    font-weight: 600;
+    border-bottom: 1px solid #cccccc;
+}
+
+.issue_desc {
+    font-size: 115%;
+    font-weight: 600;
+    position: relative;
+    left: 15px;
+}
+
+#bodytext {
+    position: relative;
+    left: 2%;
+    width: 90%;
+}
+
+#docbody {
+    position: relative;
+    background-color: #FDF3E7;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px;
+}
+
+body {
+    background-color: #C63D0F;
+    font-family:  Calibri, arial, sans-serif;
+}
+
+.element_text {
+    font-weight: 400;
+    font-size: 100%;
+    position: relative;
+    left: 20px;
+}
+
+.code {
+    position: relative;
+    left: 10px;
+    background-color: #c7c5c5;
+}

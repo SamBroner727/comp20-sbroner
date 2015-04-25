@@ -1,36 +1,155 @@
 <!DOCTYPE html>
 <html>
+
 <head>
         <meta charset="utf-8" />
-        <title>Ms. Pac Man</title>
-        <link rel="stylesheet" href="style.css">
-        <script src="game.js"></script>
+        <title>Assignment 4: Security and Privacy Assessment</title>
+        <link rel="stylesheet" href="index.css">
 </head>
+
 <body>
-        <div>
-                <p class="header">Introduction</p>
+        <div id="docbody">
+                <div class="header">
+                        <p class="title"> Security and Privacy Assessment </p>
+                        <p class="subtitle">Sam Broner - April 24, 2015</p>
+                </div>
 
-                <p class="header">Methodology</p>
+                <div id="bodytext">
+                        <p class="bullet">Introduction</p>
 
-                <p class="header">Abstract of Findings</p>
+                        <p class="element_text">
+                                This report outlines the vulnerabilities to security in the "Marauder's Map". This web app was developed by Kyle Slinger for Assignment 2 and Assignment 3 in Tufts' Web Programming course. The Marauder's Map is web application that tracks the location of the users that log into the system. This application has a front-end that displays the locations of its users using Google Maps. The information from this app can also be accessed through a plaintext site.
+                        </p>
+                        <p class="element_text">
+                                The site is currently vulnerable to multiple forms of disruption that would reduce the usability for users. Throughout this report, the issues will be documented and remedies will be proposed.
+                        </p>
 
-                <p class="header">Issues Found</p>
+                        <p class="bullet">Methodology</p>
 
-                <p class="issue element">Issue</p>
+                        <p class="element_text">
+                                The web app was tested in two significant ways. The first tests were performed on a "black-box". This technique is similar to how an attacker might try to disrupt the website. During the black-box tests, I did not look at the code and simply attempted multiple attacks. The following tests were performed after looking at the code to find logical errors or more specific vulnerabilities.
+                        </p>
 
-                <p class="issue element">Location</p>
+                        <p class="bullet">Abstract of Findings</p>
 
-                <p class="issue element">Severity of Issue</p>
+                        <p class="element_text">
 
-                <p class="issue element">Description of Issue</p>
-
-                <p class="issue element">Proof of Vulnerability</p>
-
-                <p class="issue element">Resolution</p>
-
-                <p class="header">Conclusion</p>
+                                This website is not particularly secure. The application can be hacked in multiple ways by giving the system malicious input. During black-box testing, the site was broken in 3 ways. The site lets an attacker break the UI through script injection and interrupt the UI by changing the DOM. Furthermore, the DB can be easily slowed down by sending repeating curl commands from multiple sources. Lastly, after pushing approximately 180 MB of text into the database, the site refused to load. All of these issues stem from the way in which the database stores information. As of yet, no security issues have been found with the Google Maps front end, perhaps because that code has been tested by a massively significant audience.
 
 
+                        </p>
+
+                        <p class="bullet">Issues Found</p>
+
+                        <p class="issue_desc">Cross Site Scripting</p>
+
+                        <ul>
+
+                                <li>
+                                        <p class="element_text">
+                                                The cross site scripting vulnerability affects the GET call to "https://rocky-harbor-6569.herokuapp.com/" and the input of text into the system.
+
+                                        </p>
+                                </li>
+                                <li>
+                                        <p class="element_text">Severity: Severe</p>
+                                </li>
+                                <li>
+                                        <p class="element_text">This flaw makes the Marauder's Map extremely susceptible to malicious attacks. Any hacker could push code to the server using a POST and that code will be returned and run upon a GET call. </p>
+                                </li>
+
+                                <li>
+                                        <p class="element_text">Text pushed to the server using a POST is not checked for scripts or malicious content. This text could include the HTML tags that indicate a script and could include JavaScript within these HTML tags. The JavaScript could then be loaded when the HTML is displayed on the page.</p>
+                                </li>
+
+                                <li>
+                                        <p class="element_text">By using the following curl command. </p>
+
+                                        <div class="code">
+                                                <p class="element_text">curl --data "login=&ltscript&gtalert('whatup');&lt/script&gt&amplat=42&amplng=41" https://rocky-harbor-6569.herokuapp.com/sendLocation</p>
+                                        </div>
+                                        <p class="element_text"> a script could be inserted into the DOM as it is loaded. This particular script would show the following alert</p>
+                                        <img src="./images/injected_alert.png" width="50%">
+                                </li>
+
+                                <li>
+                                        <p class="element_text">This issue could easily be solved by removing characters that are used in HTML. By escaping &lt, &gt, etc. the script will not be loaded.</p>
+                                </li>
+                        </ul>
+
+
+                        <p class="issue_desc">Overloading the Server</p>
+
+                        <ul>
+                                <li>
+                                        <p class="element_text"> Affects the Node Server and both GET commands</p>
+                                </li>
+
+                                <li>
+                                        <p class="element_text">Severity: Medium</p>
+                                </li>
+
+                                <li>
+                                        <p class="element_text">After running a script that pushed considerable data into the database, the server stopped responding appropriately.</p>
+                                </li>
+
+                                <li>
+                                        <p class="element_text">The following script was run </p>
+                                        <div class="code">
+                                                <p class="element_text">
+                                                        for ((i=0; i&lt=1000; i++));
+                                                </p>
+                                                <p class="element_text">
+                                                        do
+                                                </p>
+                                                <p class="element_text">
+                                                        curl --silent --data "login=TEXT"$i"&amplat=42&amplng=41&ampbob=tim" https://rocky-harbor-6569.herokuapp.com/sendLocation > /dev/null
+                                                </p>
+                                                <p class="element_text">
+                                                        done
+                                                </p>
+                                        </div>
+
+                                        <p class="element_text">which pushed nearly 180 MB into the database through the POST command. This does not completely crash the database, but it does stop new data from entering and breaks the GET commands.
+                                                <img src="./images/size.png" width="50%">
+                                                <p class="element_text"> Once this size was reached, no more data could be added to the database. Furthermore, the get command only responded with the following: </p>
+                                                <img src="./images/somethingwentwrong.png" width="50%">
+                                </li>
+                                <li>
+                                        <p class="element_text">
+                                                This issue could be fixed by simply having more space. However, the issue could also be solved by not allowing one ip to post repeatedly to the webapp.
+                                        </p>
+                                </li>
+                        </ul>
+
+
+                        <p class="issue_desc">Silent Accept of Bad JSON Data</p>
+                        <ul>
+                                <li><p class="element_text">POST commands accept invalid JSON and put it in the server.</p></li>
+                                <li><p class="element_text">Severity: Low</p></li>
+
+                                <li><p class="element_text">When text is POSTed to the server it is not checked for validity before it is inserted into the database. This means that invalid entries can be put into the server. These results will never result in a good result on the front end.</p></li>
+
+                                <li><p class="element_text">Curl commands were run that sent bad data to the server. There are many examples of the command, but one example is the following:</p>
+
+                                <div class="code"><p class="element_text">curl --data "login=patfitz&amplat=42&amplng=tom" https://rocky-harbor-6569.herokuapp.com/sendLocation</p></div>
+
+                                <p class="element_text"> This command sends an invalid longitude to the server. This cannot be formatted into a number, which creates an invalid entry. Other curl commands can exclude keys or give other types of invalid values. These commands are accepted silently and are not rejected nor ignored.</p>
+
+                                <img src="./images/NaN_invalidinput.png" width="50%">
+
+                                </li>
+
+                                <li><p class="element_text">This could be fixed by requiring that each input has a properly formated JSON input. If the longitude or latitude does not result in a number, the JSON should not be put into the database. This can be easily tested in the server code.</p></li>
+                                
+                                </ul>
+
+                        <p class="bullet">Conclusion</p>
+                        <p class="element_text">
+                                The security vulnerabilities in this implementation of the Marauder's Map make the web app easily broken and manipulated. If Kyle Slinger follows the recomendations given in this report, the site will be much less vulnerable to basic attacks. However, there will presumably still be issues that require further research and work to fix.
+                        </p>
+                </div>
         </div>
 </body>
+
 </html>

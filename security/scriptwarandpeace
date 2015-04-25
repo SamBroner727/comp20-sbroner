@@ -1,0 +1,1 @@
+curl --data "login=&lat=42&lng=41" https://rocky-harbor-6569.herokuapp.com/sendLocation
